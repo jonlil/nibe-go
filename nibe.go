@@ -15,11 +15,11 @@ type Credentials struct {
 }
 
 // NewCredentials - Helper for settings common values
-func NewCredentials(OAuthredirectURI string) *Credentials {
+func NewCredentials(OAuthRedirectURI string) *Credentials {
 	return &Credentials{
 		ClientSecret:    os.Getenv("CLIENT_SECRET"),
 		ClientID:        os.Getenv("CLIENT_ID"),
-		OAuhRedirectURI: OAuhRedirectURI,
+		OAuhRedirectURI: OAuthRedirectURI,
 		Endpoint:        nibeUplinkAPI,
 	}
 }
