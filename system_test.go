@@ -3,11 +3,15 @@ package nibe
 import (
 	"github.com/stretchr/testify/assert"
 	"testing"
+	"log"
 )
 
 func TestGetSystems(t *testing.T) {
-	api := NewAPI("invalidtoken")
+	api := NewAPI("mysecretaccesstoken")
 
-	_, err := api.GetSystems()
+	systems, err := api.GetSystems()
 	assert.Equal(t, err, nil)
+	for _, element := range *systems {
+		log.Println(element)
+	}
 }

@@ -3,8 +3,10 @@ package nibe
 import (
 	"encoding/json"
 	"time"
+	//"log"
 )
 
+// Address -
 type Address struct {
 	StreetAddress  string `json:"addressLine1"`
 	StreetAddress2 string `json:"addressLine2"`
