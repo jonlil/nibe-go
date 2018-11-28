@@ -21,14 +21,17 @@ type PaginatedAPIResponse struct {
 type API struct {
 	AuthorizationToken string
 	httpClient         *http.Client
+	Endpoint           string
 }
 
 // NewAPI -
 func NewAPI(authorizationToken string) *API {
-	return &API{
+	api := &API{
 		AuthorizationToken: authorizationToken,
 		httpClient:         &http.Client{},
+		Endpoint:           nibeUplinkAPI,
 	}
+	return api
 }
 
 func (api *API) buildAuthorizationHeader() []string {
@@ -38,8 +41,8 @@ func (api *API) buildAuthorizationHeader() []string {
 	}
 }
 
-func getURL(endpoint string) string {
-	return nibeUplinkAPI + "/" + endpoint
+func (api *API) getURL(endpoint string) string {
+	return api.Endpoint + "/" + endpoint
 }
 
 // Get -
@@ -49,7 +52,7 @@ func (api *API) Get(url string, data interface{}) error {
 
 // request - Helper method for making requests
 func (api *API) request(method string, url string, data *interface{}) error {
-	req, err := http.NewRequest(strings.ToUpper(method), getURL(url), nil)
+	req, err := http.NewRequest(strings.ToUpper(method), api.getURL(url), nil)
 
 	authHeader := api.buildAuthorizationHeader()
 	req.Header.Add(authHeader[0], authHeader[1])
@@ -63,7 +66,7 @@ func (api *API) request(method string, url string, data *interface{}) error {
 		return errors.New("Unauthenticated")
 	case 200:
 	default:
-		return errors.New("Unhandled response StatusCode:" + string(status))
+		return errors.New("Unhandled response StatusCode: " + string(status))
 	}
 	defer resp.Body.Close()
 
