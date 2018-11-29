@@ -1,12 +1,12 @@
 package nibe
 
 import (
-	"os"
-	"net/http"
-	"net/url"
-	"io/ioutil"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+	"net/url"
+	"os"
 )
 
 const nibeUplinkAPI = "https://api.nibeuplink.com"
@@ -61,8 +61,13 @@ func RefreshToken(refreshToken string) (*AccessToken, error) {
 		return nil, readErr
 	}
 
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("Failed refreshing token: %d", resp.StatusCode)
+	}
+
 	tokenData := &AccessToken{}
-	err := json.Unmarshal(body, &tokenData); if err != nil {
+	err := json.Unmarshal(body, &tokenData)
+	if err != nil {
 		return nil, err
 	}
 
