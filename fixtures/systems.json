@@ -1,0 +1,35 @@
+{
+  "page": 1,
+  "itemsPerPage": 30,
+  "numItems": 1,
+  "objects": [
+    {
+      "systemId": 55524,
+      "name": "F730 CU 3x400V",
+      "productName": "NIBE F730",
+      "productImage": {
+        "name": "NIBE_F730",
+        "sizes": [
+          {
+            "width": 75,
+            "height": 100,
+            "url": "/Content/Products/F730_75x100.png"
+          }
+        ]
+      },
+      "securityLevel": "ADMIN",
+      "serialNumber": "06604817291033",
+      "lastActivityDate": "2018-11-29T07:50:00Z",
+      "connectionStatus": "PENDING",
+      "address": {
+        "addressLine1": null,
+        "addressLine2": null,
+        "postalCode": null,
+        "city": null,
+        "region": null,
+        "country": "UNKNOWN"
+      },
+      "hasAlarmed": false
+    }
+  ]
+}
