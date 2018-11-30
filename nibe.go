@@ -38,6 +38,21 @@ type AccessToken struct {
 	TokenType    string `json:"token_type"`
 }
 
+func (at *AccessToken) Refresh() error {
+	nat, err := RefreshToken(at.RefreshToken)
+	if err != nil {
+		return err
+	}
+
+	at.AccessToken = nat.AccessToken
+	at.RefreshToken = nat.RefreshToken
+	at.Scope = nat.Scope
+	at.TokenType = nat.TokenType
+	at.ExpiresIn = nat.ExpiresIn
+
+	return nil
+}
+
 // RefreshTokenRequest -
 type RefreshTokenRequest struct {
 	GrantType    string
