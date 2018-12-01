@@ -31,7 +31,7 @@ func NewCredentials(OAuthRedirectURI string) *Credentials {
 
 // AccessToken -
 type AccessToken struct {
-	AccessToken  string `json:"access_token"`
+	Token        string `json:"access_token"`
 	ExpiresIn    int    `json:"expires_in"`
 	RefreshToken string `json:"refresh_token"`
 	Scope        string `json:"scope"`
@@ -44,7 +44,7 @@ func (at *AccessToken) Refresh() error {
 		return err
 	}
 
-	at.AccessToken = nat.AccessToken
+	at.Token = nat.Token
 	at.RefreshToken = nat.RefreshToken
 	at.Scope = nat.Scope
 	at.TokenType = nat.TokenType
